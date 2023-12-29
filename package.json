@@ -4,7 +4,8 @@
   "description": "��#\u0000 \u0000P\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000s\u0000\r\u0000 \u0000\r\u0000 \u0000T\u0000h\u0000i\u0000s\u0000 \u0000i\u0000s\u0000 \u0000w\u0000h\u0000e\u0000r\u0000e\u0000 \u0000I\u0000'\u0000l\u0000l\u0000 \u0000b\u0000u\u0000i\u0000l\u0000d\u0000 \u0000m\u0000y\u0000 \u0000B\u0000r\u0000o\u0000a\u0000d\u0000v\u0000o\u0000i\u0000c\u0000e\u0000 \u0000P\u0000r\u0000o\u0000j\u0000e\u0000c\u0000t\u0000",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --no-timeouts './src/tests/*.js'"
+    "test": "mocha --no-timeouts './src/tests/*.js'",
+    "test-debug": "mocha --inspect-brk './src/tests/*.js'"
   },
   "keywords": [],
   "author": "",

@@ -74,7 +74,7 @@ class BasePage extends DriverFactory {
   }
 
   async sleep() {
-    await driver.sleep(2000);
+    await driver.sleep(1000);
   }
 
   async waitUntilElementIsLocated(locator, timeout = 10000) {
@@ -108,6 +108,10 @@ class BasePage extends DriverFactory {
   async killDriver() {
     await driver.quit();
   }
+  
+
+  
+
 }
 
 module.exports = BasePage;

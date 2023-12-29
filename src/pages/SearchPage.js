@@ -6,7 +6,8 @@ const BookPage = require("./BookPage");
 
 let bookTitleCss = "h6.book-title";
 let seeMoreCss = "a.vermaisajax";
-let bookImageXpath = "//section[4]/div/div[2]/div[1]/a[1]/div[1]/div/img";
+let breadcrumbCss = 'li.breadcrumb-item.active';
+let bookImageCss = 'div .img-fluid.lazy.entered.loaded';
 
 // CLOSING ELEMENTS
 
@@ -27,12 +28,23 @@ class SearchPage extends BasePage {
 
   async clickBookIfAvailableInList(matchingTitle) {
     let bookTitles = await this.getAllBookTitles();
-
     if (bookTitles.find((title) => title.includes(matchingTitle))) {
       const index = bookTitles.indexOf(matchingTitle);
       await this.clickBookOfIndex(index);
-      await this.waitUntilElementIsLocated(By.xpath(bookImageXpath));
-      this.sleep();
+      await this.sleep();
+      await this.waitUntilElementIsLocated(By.css(bookImageCss));
+      await this.waitUntilBreadcrumbMatchesTitle(matchingTitle);
+    }
+  }
+  async waitUntilBreadcrumbMatchesTitle(title){
+    let attempts = 0;
+    let maxAttempts = 3;
+    while(attempts<maxAttempts){
+      let breadcrumbText = await this.findTextByCss(breadcrumbCss);
+      if(breadcrumbText == title){
+        break;
+      }
+      attempts++;
     }
   }
 

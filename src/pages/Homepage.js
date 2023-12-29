@@ -9,7 +9,7 @@ let BASE_URL = "https://www.leyaonline.com/pt/";
 
 let searchInputId = "searchbar-large";
 let cookiesPopupRejectId = "cookiescript_reject";
-let searchBreadcrumbCss = "li.breadcrumb-item.active";
+let searchFilterCss = 'div.search-filter-btn';
 
 // CLOSING ELEMENTS
 
@@ -23,7 +23,8 @@ class HomePage extends BasePage {
 
   async searchText(text) {
     await this.searchTextById(searchInputId, text);
-    await this.waitUntilElementIsLocated(By.css(searchBreadcrumbCss));
+    await this.waitUntilElementIsLocated(By.css(searchFilterCss));
+    await this.sleep();
   }
 }
 
