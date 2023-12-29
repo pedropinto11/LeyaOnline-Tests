@@ -1,4 +1,3 @@
-var webdriver = require("selenium-webdriver");
 const { By, Key, until } = require("selenium-webdriver");
 const DriverFactory = require("../utils/DriverFactory");
 
@@ -11,6 +10,11 @@ class BasePage extends DriverFactory {
   async findElementById(id) {
     await driver.wait(until.elementsLocated(By.id(id)));
     return await driver.findElement(By.id(id));
+  }
+
+  async findElementByXpath(xpath) {
+    await driver.wait(until.elementsLocated(By.xpath(xpath)));
+    return await driver.findElement(By.xpath(xpath));
   }
 
   async findElementByLocator(locator) {
@@ -41,6 +45,14 @@ class BasePage extends DriverFactory {
 
   async findAndClickElementById(id) {
     (await this.findElementById(id)).click();
+  }
+  async findAndClickElementByCss(css) {
+    (await this.findElementByCss(css)).click();
+  }
+
+  async findAndClickElementByXpath(xpath) {
+    const element = await this.findElementByXpath(xpath);
+    await element.click();
   }
 
   async findElementsByLocator(locator) {
@@ -108,10 +120,6 @@ class BasePage extends DriverFactory {
   async killDriver() {
     await driver.quit();
   }
-  
-
-  
-
 }
 
 module.exports = BasePage;

@@ -1,7 +1,5 @@
 const { Builder, By, Key, until, wait } = require("selenium-webdriver");
 var BasePage = require("../pages/BasePage");
-var webdriver = require("selenium-webdriver");
-var SearchPage = require("../pages/SearchPage");
 
 let BASE_URL = "https://www.leyaonline.com/pt/";
 
@@ -9,7 +7,7 @@ let BASE_URL = "https://www.leyaonline.com/pt/";
 
 let searchInputId = "searchbar-large";
 let cookiesPopupRejectId = "cookiescript_reject";
-let searchFilterCss = 'div.search-filter-btn';
+let searchFilterCss = "div.search-filter-btn";
 
 // CLOSING ELEMENTS
 
