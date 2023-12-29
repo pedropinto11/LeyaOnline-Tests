@@ -14,16 +14,16 @@ let searchBreadcrumbCss = "li.breadcrumb-item.active";
 // CLOSING ELEMENTS
 
 class HomePage extends BasePage {
-  goToHomepageFirstTime() {
-    this.goToUrl(BASE_URL);
-    this.maximizeWindow();
-    this.findAndClickElementById(cookiesPopupRejectId);
-    this.waitUntilElementIsLocated(By.id(searchInputId));
+  async goToHomepageFirstTime() {
+    await this.goToUrl(BASE_URL);
+    await this.maximizeWindow();
+    await this.findAndClickElementById(cookiesPopupRejectId);
+    await this.waitUntilElementIsLocated(By.id(searchInputId));
   }
 
-  searchText(text) {
-    this.searchTextById(searchInputId, text);
-    this.waitUntilElementIsLocated(By.css(searchBreadcrumbCss));
+  async searchText(text) {
+    await this.searchTextById(searchInputId, text);
+    await this.waitUntilElementIsLocated(By.css(searchBreadcrumbCss));
   }
 }
 
