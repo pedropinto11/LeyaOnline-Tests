@@ -1,8 +1,8 @@
 var webdriver = require("selenium-webdriver");
 const { By, Key, until } = require("selenium-webdriver");
-const DriverFactory = require('../utils/DriverFactory');
+const DriverFactory = require("../utils/DriverFactory");
 
-class BasePage extends DriverFactory{
+class BasePage extends DriverFactory {
   constructor(driver) {
     super(driver);
     this.driver = driver;
@@ -73,7 +73,7 @@ class BasePage extends DriverFactory{
     await driver.sleep(1500);
   }
 
-  async sleep(){
+  async sleep() {
     await driver.sleep(2000);
   }
 
@@ -105,10 +105,9 @@ class BasePage extends DriverFactory{
     }
   }
 
-  async killDriver(){
+  async killDriver() {
     await driver.quit();
   }
-  
 }
 
 module.exports = BasePage;

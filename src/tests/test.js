@@ -14,46 +14,34 @@ describe("Test Suite", function () {
   });
 
   afterEach(async function () {
-    await DriverFactory.quitDriver();
+    await DriverFactory.quitDriver(driver);
   });
 
-  // it("Scenario 1", async function () {
-  //   await homePage.searchText("George");
+  it("Scenario 1", async function () {
+    await homePage.searchText("George");
 
-  //   await searchPage.clickOnSeeMoreWhileIsVisible();
+    await searchPage.clickOnSeeMoreWhileIsVisible();
 
-  //   let bookTitles = await searchPage.getAllBookTitles();
+    let bookTitles = await searchPage.getAllBookTitles();
 
-  //   let isTitleAvailable = bookTitles.includes("O Triunfo dos Porcos");
+    let isTitleAvailable = bookTitles.includes("O Triunfo dos Porcos");
 
-  //   assert.equal(isTitleAvailable, true);
-  // });
+    assert.equal(isTitleAvailable, true);
+  });
 
   it("Scenario 2", async function () {
     await homePage.searchText("1984");
 
-    //await searchPage.clickOnSeeMoreWhileIsVisible();
-
     await searchPage.clickBookIfAvailableInList("1984");
-
-    await searchPage.sleep();
 
     let bookAuthor = await bookPage.getAuthorName();
     let bookISBN = await bookPage.getISBN();
-
     let bookPages = await bookPage.getNumberOfPages();
-
     let bookDimensions = await bookPage.getBookDimensions();
 
-    console.log(bookAuthor, bookISBN, bookPage, bookDimensions);
-
-
-    assert.equal(bookAuthor, 'George Orwell');
-    assert.equal(bookISBN, '9789722071550');
-
-    assert.equal(bookPages, '344');
-
-    assert.equal(bookDimensions, '235 x 157 x 23 mm');
-
+    assert.equal(bookAuthor, "george orwell");
+    assert.equal(bookISBN, "9789722071550");
+    assert.equal(bookPages, "344");
+    assert.equal(bookDimensions, "235 x 157 x 23 mm");
   });
 });
