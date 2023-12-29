@@ -7,6 +7,8 @@ let bookDetailsCss = "._sinpose-address ul";
 let isbnCss = bookDetailsCss + " li:nth-child(1)";
 let numberOfPagesCss = bookDetailsCss + " li:nth-child(6)";
 let bookDimensionsCss = bookDetailsCss + " li:nth-child(5)";
+let numberOfItemsInCartId = "dropdownMenuButton100";
+let buyBookXpath = "//div[4]/div/div[2]/div/a";
 
 // CLOSING ELEMENTS
 
@@ -31,6 +33,16 @@ class BookPage extends BasePage {
     const startIndex = dimensions.indexOf("Dimensões: ") + "Dimensões: ".length;
     const endIndex = dimensions.length;
     return dimensions.substring(startIndex, endIndex).trim();
+  }
+
+  async clickBuyBook() {
+    await this.findAndClickElementByXpath(buyBookXpath);
+  }
+
+  async getNumberOfItemsInCart() {
+    let element = await this.findElementById(numberOfItemsInCartId);
+    console.log(element.getAttribute("data-tag"));
+    return element.getAttribute("data-tag");
   }
 }
 

@@ -4,6 +4,7 @@ const homePage = require("../pages/Homepage");
 const searchPage = require("../pages/SearchPage");
 const bookPage = require("../pages/BookPage");
 const DriverFactory = require("../utils/DriverFactory");
+const checkoutPage = require("../pages/CheckoutPage");
 
 describe("Test Suite", function () {
   this.timeout(30000);
@@ -63,5 +64,20 @@ describe("Test Suite", function () {
       secondBookAuthor,
       `First book "${firstBookAuthor}" is different from the second "${secondBookAuthor}".`
     );
+  });
+
+  it("Scenario 4", async function () {
+    debugger;
+    await homePage.searchText("1984");
+
+    await searchPage.clickBookIfAvailableInList("1984");
+
+    await bookPage.clickBuyBook();
+
+    await checkoutPage.goToCheckoutPageByUrl();
+
+    let totalBooksInCart = await checkoutPage.getNumberOfBooksInCart();
+
+    assert.equal(totalBooksInCart,1);
   });
 });
