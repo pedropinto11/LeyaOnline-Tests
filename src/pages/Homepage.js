@@ -8,6 +8,8 @@ let BASE_URL = "https://www.leyaonline.com/pt/";
 let searchInputId = "searchbar-large";
 let cookiesPopupRejectId = "cookiescript_reject";
 let searchFilterCss = "div.search-filter-btn";
+let darkModeId = "darkmode";
+let darkModeIcon = "#darkmode a i";
 
 // CLOSING ELEMENTS
 
@@ -23,6 +25,15 @@ class HomePage extends BasePage {
     await this.searchTextById(searchInputId, text);
     await this.waitUntilElementIsLocated(By.css(searchFilterCss));
     await this.sleep();
+  }
+
+  async clickDarkMode() {
+    await this.findAndClickElementById(darkModeId);
+  }
+
+  async getClassNameFromDarkModeIcon() {
+    let icon = await this.findElementByCss(darkModeIcon);
+    return await icon.getAttribute("class");
   }
 }
 

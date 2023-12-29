@@ -44,7 +44,8 @@ class BasePage extends DriverFactory {
   }
 
   async findAndClickElementById(id) {
-    (await this.findElementById(id)).click();
+    let element = await this.findElementById(id);
+    await element.click();
   }
   async findAndClickElementByCss(css) {
     (await this.findElementByCss(css)).click();

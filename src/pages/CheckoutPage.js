@@ -26,7 +26,6 @@ class CheckoutPage extends BasePage {
         totalBooksOrdered += numberOfBooks;
       }
     }
-    console.log(totalBooksOrdered);
     return totalBooksOrdered;
   }
 }

@@ -67,7 +67,6 @@ describe("Test Suite", function () {
   });
 
   it("Scenario 4", async function () {
-    debugger;
     await homePage.searchText("1984");
 
     await searchPage.clickBookIfAvailableInList("1984");
@@ -78,6 +77,14 @@ describe("Test Suite", function () {
 
     let totalBooksInCart = await checkoutPage.getNumberOfBooksInCart();
 
-    assert.equal(totalBooksInCart,1);
+    assert.equal(totalBooksInCart,1, `The total books in the cart "${totalBooksInCart}" is different from 1`);
+  });
+
+  it("Scenario 5", async function () {
+    await homePage.clickDarkMode();
+    
+    let icon = await homePage.getClassNameFromDarkModeIcon();
+
+    assert.equal(icon, 'nav-icon icon-moon', `The icon "${icon}" is not a moon. Dark mode is not enabled`);
   });
 });
