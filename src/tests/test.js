@@ -35,8 +35,6 @@ describe("Test Suite", function () {
       true,
       `The title "${bookTitle}" does not exist".`
     );
-
-    debugger;
     await searchPage.clickBookIfAvailableInList(bookTitle);
 
     let bookDescription = await bookPage.getBookDescription();
