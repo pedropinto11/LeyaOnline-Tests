@@ -116,18 +116,6 @@ describe("Test Suite", function () {
     );
   });
 
-  it("Scenario 5", async function () {
-    await homePage.clickDarkMode();
-
-    let icon = await homePage.getClassNameFromDarkModeIcon();
-
-    assert.equal(
-      icon,
-      "nav-icon icon-moon",
-      `The icon "${icon}" is not a moon. Dark mode is not enabled`
-    );
-  });
-
   it("Change the background to dark mode.", async function () {
     await homePage.clickDarkMode();
 
@@ -149,6 +137,24 @@ describe("Test Suite", function () {
       url.includes("/login"),
       true,
       `The redirected page is not the login page: ${url}`
+    );
+  });
+
+  it("When you click on the home button, you are redirected to the homepage", async function () {
+    let searchText = "1984";
+
+    await homePage.searchText(searchText);
+
+    debugger;
+
+    await homePage.clickHomeBtn();
+
+    let url = await homePage.getPageUrl();
+
+    assert.equal(
+      url,
+      "https://www.leyaonline.com/pt/",
+      `Not redirected to the homepage. Redirected to: ${url}`
     );
   });
 });
