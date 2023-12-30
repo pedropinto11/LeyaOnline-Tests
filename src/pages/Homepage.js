@@ -10,7 +10,8 @@ let cookiesPopupRejectId = "cookiescript_reject";
 let searchFilterCss = "div.search-filter-btn";
 let darkModeId = "darkmode";
 let darkModeIconCss = "#darkmode a i";
-let profileCss = 'div.header-icons div.dropdown';
+let profileCss = "div.header-icons div.dropdown";
+let homeBtnCss = "div .header-logo.header-logo-big";
 
 // CLOSING ELEMENTS
 
@@ -37,11 +38,13 @@ class HomePage extends BasePage {
     return await icon.getAttribute("class");
   }
 
-  async goToProfile(){
+  async goToProfile() {
     await this.findAndClickElementByCss(profileCss);
   }
 
-  
+  async clickHomeBtn() {
+    await this.findAndClickElementByCss(homeBtnCss);
+  }
 }
 
 module.exports = new HomePage();
