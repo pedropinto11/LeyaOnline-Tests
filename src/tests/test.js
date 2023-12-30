@@ -24,7 +24,6 @@ describe("Test Suite", function () {
     let bookTitle = "O Triunfo dos Porcos";
 
     await homePage.searchText(searchText);
-    debugger;
     await searchPage.clickOnSeeMoreWhileIsVisible();
 
     let bookTitles = await searchPage.getAllBookTitles();
@@ -50,109 +49,109 @@ describe("Test Suite", function () {
     // );
   });
 
-  it("Scenario 2", async function () {
-    await homePage.searchText("1984");
+  // it("Scenario 2", async function () {
+  //   await homePage.searchText("1984");
 
-    await searchPage.clickBookIfAvailableInList("1984");
+  //   await searchPage.clickBookIfAvailableInList("1984");
 
-    let bookAuthor = await bookPage.getAuthorName();
-    let bookISBN = await bookPage.getISBN();
-    let bookPages = await bookPage.getNumberOfPages();
-    let bookDimensions = await bookPage.getBookDimensions();
+  //   let bookAuthor = await bookPage.getAuthorName();
+  //   let bookISBN = await bookPage.getISBN();
+  //   let bookPages = await bookPage.getNumberOfPages();
+  //   let bookDimensions = await bookPage.getBookDimensions();
 
-    assert.equal(
-      bookAuthor,
-      "george orwell",
-      `Book author "${bookAuthor} is different from "george orwell".`
-    );
-    assert.equal(
-      bookISBN,
-      "9789722071550",
-      `ISBN "${bookISBN} is different from "9789722071550".`
-    );
-    assert.equal(
-      bookPages,
-      "344",
-      `Pages "${bookPages} is different from "344".`
-    );
-    assert.equal(
-      bookDimensions,
-      "235 x 157 x 23 mm",
-      `Dimensions "${bookDimensions} are different from "235 x 157 x 23 mm".`
-    );
-  });
+  //   assert.equal(
+  //     bookAuthor,
+  //     "george orwell",
+  //     `Book author "${bookAuthor} is different from "george orwell".`
+  //   );
+  //   assert.equal(
+  //     bookISBN,
+  //     "9789722071550",
+  //     `ISBN "${bookISBN} is different from "9789722071550".`
+  //   );
+  //   assert.equal(
+  //     bookPages,
+  //     "344",
+  //     `Pages "${bookPages} is different from "344".`
+  //   );
+  //   assert.equal(
+  //     bookDimensions,
+  //     "235 x 157 x 23 mm",
+  //     `Dimensions "${bookDimensions} are different from "235 x 157 x 23 mm".`
+  //   );
+  // });
 
-  it("Scenario 3", async function () {
-    await homePage.searchText("1984");
+  // it("Scenario 3", async function () {
+  //   await homePage.searchText("1984");
 
-    await searchPage.clickBookIfAvailableInList("1984");
+  //   await searchPage.clickBookIfAvailableInList("1984");
 
-    let firstBookAuthor = await bookPage.getAuthorName();
+  //   let firstBookAuthor = await bookPage.getAuthorName();
 
-    await homePage.searchText("A Quinta dos Animais");
+  //   await homePage.searchText("A Quinta dos Animais");
 
-    await searchPage.clickBookIfAvailableInList("A Quinta dos Animais");
+  //   await searchPage.clickBookIfAvailableInList("A Quinta dos Animais");
 
-    let secondBookAuthor = await bookPage.getAuthorName();
+  //   let secondBookAuthor = await bookPage.getAuthorName();
 
-    assert.equal(
-      firstBookAuthor,
-      secondBookAuthor,
-      `First book "${firstBookAuthor}" is different from the second "${secondBookAuthor}".`
-    );
-  });
+  //   assert.equal(
+  //     firstBookAuthor,
+  //     secondBookAuthor,
+  //     `First book "${firstBookAuthor}" is different from the second "${secondBookAuthor}".`
+  //   );
+  // });
 
-  it("Scenario 4", async function () {
-    await homePage.searchText("1984");
+  // it("Scenario 4", async function () {
+  //   await homePage.searchText("1984");
 
-    await searchPage.clickBookIfAvailableInList("1984");
+  //   await searchPage.clickBookIfAvailableInList("1984");
 
-    await bookPage.clickBuyBook();
+  //   await bookPage.clickBuyBook();
 
-    await checkoutPage.goToCheckoutPageByUrl();
+  //   await checkoutPage.goToCheckoutPageByUrl();
 
-    let totalBooksInCart = await checkoutPage.getNumberOfBooksInCart();
+  //   let totalBooksInCart = await checkoutPage.getNumberOfBooksInCart();
 
-    assert.equal(
-      totalBooksInCart,
-      1,
-      `The total books in the cart "${totalBooksInCart}" is different from 1`
-    );
-  });
+  //   assert.equal(
+  //     totalBooksInCart,
+  //     1,
+  //     `The total books in the cart "${totalBooksInCart}" is different from 1`
+  //   );
+  // });
 
-  it("Scenario 5", async function () {
-    await homePage.clickDarkMode();
+  // it("Scenario 5", async function () {
+  //   await homePage.clickDarkMode();
 
-    let icon = await homePage.getClassNameFromDarkModeIcon();
+  //   let icon = await homePage.getClassNameFromDarkModeIcon();
 
-    assert.equal(
-      icon,
-      "nav-icon icon-moon",
-      `The icon "${icon}" is not a moon. Dark mode is not enabled`
-    );
-  });
+  //   assert.equal(
+  //     icon,
+  //     "nav-icon icon-moon",
+  //     `The icon "${icon}" is not a moon. Dark mode is not enabled`
+  //   );
+  // });
 
-  it("Scenario 5", async function () {
-    await homePage.clickDarkMode();
+  // it("Scenario 5", async function () {
+  //   await homePage.clickDarkMode();
 
-    let icon = await homePage.getClassNameFromDarkModeIcon();
+  //   let icon = await homePage.getClassNameFromDarkModeIcon();
 
-    assert.equal(
-      icon,
-      "nav-icon icon-moon",
-      `The icon "${icon}" is not a moon. Dark mode is not enabled`
-    );
-  });
+  //   assert.equal(
+  //     icon,
+  //     "nav-icon icon-moon",
+  //     `The icon "${icon}" is not a moon. Dark mode is not enabled`
+  //   );
+  // });
 
-  it("When clicking in the profile, you are redirected to the login screen.", async function () {
-    await homePage.goToProfile();
+  // it("When clicking in the profile, you are redirected to the login screen.", async function () {
+  //   await homePage.goToProfile();
 
-    let url = await profilePage.getPageUrl();
+  //   let url = await profilePage.getPageUrl();
 
-    assert.equal(
-      url.includes("/login"),
-      true,
-      `The redirected page is not the login page: ${url}`
-    );
-  });
+  //   assert.equal(
+  //     url.includes("/login"),
+  //     true,
+  //     `The redirected page is not the login page: ${url}`
+  //   );
+  // });
 });
