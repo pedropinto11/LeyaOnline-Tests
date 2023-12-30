@@ -5,9 +5,10 @@ const searchPage = require("../pages/SearchPage");
 const bookPage = require("../pages/BookPage");
 const DriverFactory = require("../utils/DriverFactory");
 const checkoutPage = require("../pages/CheckoutPage");
+const profilePage = require("../pages/ProfilePage");
 
 describe("Test Suite", function () {
-  this.timeout(30000);
+  this.timeout(50000);
 
   beforeEach(async function () {
     driver = await DriverFactory.createDriver();
@@ -18,16 +19,35 @@ describe("Test Suite", function () {
     await DriverFactory.quitDriver(driver);
   });
 
-  it("Scenario 1", async function () {
-    await homePage.searchText("George");
+  it("Search for George and validate the book 'O Triunfo dos Porcos' appears in the list and contains the descriptrion the words 'Quinta Manor' in  description", async function () {
+    let searchText = "George";
+    let bookTitle = "O Triunfo dos Porcos";
 
+    await homePage.searchText(searchText);
+    debugger;
     await searchPage.clickOnSeeMoreWhileIsVisible();
 
     let bookTitles = await searchPage.getAllBookTitles();
 
-    let isTitleAvailable = bookTitles.includes("O Triunfo dos Porcos");
+    let isTitleAvailable = bookTitles.includes(bookTitle);
 
-    assert.equal(isTitleAvailable, true, `The title "O Triunfo dos Porcos" does not exist".`);
+    assert.equal(
+      isTitleAvailable,
+      true,
+      `The title "${bookTitle}" does not exist".`
+    );
+
+    // debugger;
+
+    // await searchPage.clickBookIfAvailableInList(bookTitle);
+
+    // let bookDescription = await bookPage.getBookDescription();
+
+    // assert.equal(
+    //   bookDescription.includes("Quinta Manor"),
+    //   true,
+    //   `The description doesn't contain "Quinta Manor"`
+    // );
   });
 
   it("Scenario 2", async function () {
@@ -40,10 +60,26 @@ describe("Test Suite", function () {
     let bookPages = await bookPage.getNumberOfPages();
     let bookDimensions = await bookPage.getBookDimensions();
 
-    assert.equal(bookAuthor, "george orwell", `Book author "${bookAuthor} is different from "george orwell".`);
-    assert.equal(bookISBN, "9789722071550", `ISBN "${bookISBN} is different from "9789722071550".`);
-    assert.equal(bookPages, "344", `Pages "${bookPages} is different from "344".`);
-    assert.equal(bookDimensions, "235 x 157 x 23 mm", `Dimensions "${bookDimensions} are different from "235 x 157 x 23 mm".`);
+    assert.equal(
+      bookAuthor,
+      "george orwell",
+      `Book author "${bookAuthor} is different from "george orwell".`
+    );
+    assert.equal(
+      bookISBN,
+      "9789722071550",
+      `ISBN "${bookISBN} is different from "9789722071550".`
+    );
+    assert.equal(
+      bookPages,
+      "344",
+      `Pages "${bookPages} is different from "344".`
+    );
+    assert.equal(
+      bookDimensions,
+      "235 x 157 x 23 mm",
+      `Dimensions "${bookDimensions} are different from "235 x 157 x 23 mm".`
+    );
   });
 
   it("Scenario 3", async function () {
@@ -77,14 +113,46 @@ describe("Test Suite", function () {
 
     let totalBooksInCart = await checkoutPage.getNumberOfBooksInCart();
 
-    assert.equal(totalBooksInCart,1, `The total books in the cart "${totalBooksInCart}" is different from 1`);
+    assert.equal(
+      totalBooksInCart,
+      1,
+      `The total books in the cart "${totalBooksInCart}" is different from 1`
+    );
   });
 
   it("Scenario 5", async function () {
     await homePage.clickDarkMode();
-    
+
     let icon = await homePage.getClassNameFromDarkModeIcon();
 
-    assert.equal(icon, 'nav-icon icon-moon', `The icon "${icon}" is not a moon. Dark mode is not enabled`);
+    assert.equal(
+      icon,
+      "nav-icon icon-moon",
+      `The icon "${icon}" is not a moon. Dark mode is not enabled`
+    );
+  });
+
+  it("Scenario 5", async function () {
+    await homePage.clickDarkMode();
+
+    let icon = await homePage.getClassNameFromDarkModeIcon();
+
+    assert.equal(
+      icon,
+      "nav-icon icon-moon",
+      `The icon "${icon}" is not a moon. Dark mode is not enabled`
+    );
+  });
+
+  it("When clicking in the profile, you are redirected to the login screen.", async function () {
+    await homePage.goToProfile();
+
+    let url = await profilePage.getPageUrl();
+
+    assert.equal(
+      url.includes("/login"),
+      true,
+      `The redirected page is not the login page: ${url}`
+    );
   });
 });

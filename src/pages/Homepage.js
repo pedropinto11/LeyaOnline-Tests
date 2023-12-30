@@ -9,7 +9,8 @@ let searchInputId = "searchbar-large";
 let cookiesPopupRejectId = "cookiescript_reject";
 let searchFilterCss = "div.search-filter-btn";
 let darkModeId = "darkmode";
-let darkModeIcon = "#darkmode a i";
+let darkModeIconCss = "#darkmode a i";
+let profileCss = 'div.header-icons div.dropdown';
 
 // CLOSING ELEMENTS
 
@@ -32,9 +33,15 @@ class HomePage extends BasePage {
   }
 
   async getClassNameFromDarkModeIcon() {
-    let icon = await this.findElementByCss(darkModeIcon);
+    let icon = await this.findElementByCss(darkModeIconCss);
     return await icon.getAttribute("class");
   }
+
+  async goToProfile(){
+    await this.findAndClickElementByCss(profileCss);
+  }
+
+  
 }
 
 module.exports = new HomePage();

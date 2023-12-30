@@ -8,6 +8,7 @@ let isbnCss = bookDetailsCss + " li:nth-child(1)";
 let numberOfPagesCss = bookDetailsCss + " li:nth-child(6)";
 let bookDimensionsCss = bookDetailsCss + " li:nth-child(5)";
 let buyBookXpath = "//div[4]/div/div[2]/div/a";
+let bookDescriptionId = '_65901c767480a';
 
 // CLOSING ELEMENTS
 
@@ -36,6 +37,10 @@ class BookPage extends BasePage {
 
   async clickBuyBook() {
     await this.findAndClickElementByXpath(buyBookXpath);
+  }
+
+  async getBookDescription(){
+    return await this.findTextById(bookDescriptionId);
   }
 }
 
