@@ -8,7 +8,7 @@ let isbnCss = bookDetailsCss + " li:nth-child(1)";
 let numberOfPagesCss = bookDetailsCss + " li:nth-child(6)";
 let bookDimensionsCss = bookDetailsCss + " li:nth-child(5)";
 let buyBookXpath = "//div[4]/div/div[2]/div/a";
-let bookDescriptionId = '_65901c767480a';
+let bookDescriptionCss = 'section.sinopse div .show-more.show-more-hided';
 
 // CLOSING ELEMENTS
 
@@ -40,7 +40,7 @@ class BookPage extends BasePage {
   }
 
   async getBookDescription(){
-    return await this.findTextById(bookDescriptionId);
+    return await this.findTextByCss(bookDescriptionCss);
   }
 }
 

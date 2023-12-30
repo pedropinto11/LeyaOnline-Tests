@@ -23,7 +23,9 @@ class SearchPage extends BasePage {
     let bookTitleElements = await this.findElementsByLocator(
       By.css(bookTitleCss)
     );
+    await this.scrollToVisibleElement(bookTitleElements[index]);
     await bookTitleElements[index].click();
+    await this.sleep();
   }
 
   async clickBookIfAvailableInList(matchingTitle) {
@@ -31,7 +33,6 @@ class SearchPage extends BasePage {
     if (bookTitles.find((title) => title.includes(matchingTitle))) {
       const index = bookTitles.indexOf(matchingTitle);
       await this.clickBookOfIndex(index);
-      await this.sleep();
       await this.waitUntilElementIsLocated(By.css(bookImageCss));
       await this.waitUntilBreadcrumbMatchesTitle(matchingTitle);
     }

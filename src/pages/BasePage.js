@@ -48,7 +48,8 @@ class BasePage extends DriverFactory {
     await element.click();
   }
   async findAndClickElementByCss(css) {
-    (await this.findElementByCss(css)).click();
+    let element = await this.findElementByCss(css);
+    await element.click();
   }
 
   async findAndClickElementByXpath(xpath) {
@@ -64,6 +65,15 @@ class BasePage extends DriverFactory {
   async doesElementExist(locator) {
     const elements = await this.findElementsByLocator(locator);
     return elements.length > 0;
+  }
+  async findTextById(id) {
+    await driver.wait(until.elementsLocated(By.id(id)));
+    let element = await driver.findElement(By.id(id));
+    return await element.getText();
+  }
+
+  async getPageUrl() {
+    return await driver.getCurrentUrl();
   }
 
   async goToUrl(url) {
@@ -86,8 +96,8 @@ class BasePage extends DriverFactory {
     await driver.sleep(1500);
   }
 
-  async sleep() {
-    await driver.sleep(1000);
+  async sleep(time = 2000) {
+    await driver.sleep(time);
   }
 
   async waitUntilElementIsLocated(locator, timeout = 10000) {
@@ -114,6 +124,22 @@ class BasePage extends DriverFactory {
         );
         await driver.sleep(1000);
         attempts++;
+      }
+    }
+  }
+
+  async scrollToVisibleElement(element) {
+    const maxScrollAttempts = 10;
+
+    for (let attempt = 0; attempt < maxScrollAttempts; attempt++) {
+      await driver.executeScript(
+        'arguments[0].scrollIntoView({behavior: "smooth", block: "center", inline: "center"});',
+        element
+      );
+      await this.sleep(1000);
+      const isElementVisible = await element.isDisplayed();
+      if (isElementVisible) {
+        break;
       }
     }
   }
