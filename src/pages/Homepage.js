@@ -1,4 +1,4 @@
-const { Builder, By, Key, until, wait } = require("selenium-webdriver");
+const { By } = require("selenium-webdriver");
 var BasePage = require("../pages/BasePage");
 
 let BASE_URL = "https://www.leyaonline.com/pt/";

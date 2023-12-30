@@ -1,6 +1,5 @@
 const { By } = require("selenium-webdriver");
 var BasePage = require("./BasePage");
-const BookPage = require("./BookPage");
 
 // ELEMENTS IN SEARCHPAGE
 

@@ -37,11 +37,6 @@ class BasePage extends DriverFactory {
     let element = await driver.findElement(By.css(css));
     return await element.getText();
   }
-  async findTextByXpath(xpath) {
-    await driver.wait(until.elementsLocated(By.xpath(xpath)));
-    let element = await driver.findElement(By.xpath(xpath));
-    return await element.getText();
-  }
 
   async findAndClickElementById(id) {
     let element = await this.findElementById(id);
@@ -66,11 +61,6 @@ class BasePage extends DriverFactory {
     const elements = await this.findElementsByLocator(locator);
     return elements.length > 0;
   }
-  async findTextById(id) {
-    await driver.wait(until.elementsLocated(By.id(id)));
-    let element = await driver.findElement(By.id(id));
-    return await element.getText();
-  }
 
   async getPageUrl() {
     return await driver.getCurrentUrl();
@@ -83,17 +73,6 @@ class BasePage extends DriverFactory {
   async searchTextById(id, searchText) {
     const searchInput = await this.findElementById(id);
     await searchInput.sendKeys(searchText, Key.RETURN);
-  }
-
-  async clickById(id) {
-    await this.findElementById(id).click();
-  }
-
-  async scrollToTheBottomOfPage() {
-    await driver.executeScript(
-      "window.scrollTo(0, document.body.scrollHeight);"
-    );
-    await driver.sleep(1500);
   }
 
   async sleep(time = 2000) {

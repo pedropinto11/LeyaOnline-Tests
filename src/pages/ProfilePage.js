@@ -1,4 +1,3 @@
-const { Builder, By, Key, until, wait } = require("selenium-webdriver");
 var BasePage = require("../pages/BasePage");
 
 // ELEMENTS IN HOMEPAGE
